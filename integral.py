@@ -1,15 +1,16 @@
-def gates(func):
-    def wrapped(a,b,lower=2,upper=1):
-        if lower and upper:
-            return str((a/2.0)*upper*upper+b*upper-(a/2.0)*lower*lower+b*upper)
-        else:
-            return func(a,b)
-    return wrapped
+def gates(lower=None,upper=None):
+    def decorator(func):
+        def wrapped(a,b):
+            if lower and upper:
+                return str(((a/2.0)*upper*upper+b*upper)-((a/2.0)*lower*lower+b*lower))
+            else:
+                return func(a,b)
+        return wrapped
+    return decorator
 
-@gates
+@gates(1,2)
 def integral(a,b):
     a=a/2.0
-    print a
     return str(a)+'x^2 + '+ str(b) + 'x+C'
 
 def main():
