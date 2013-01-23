@@ -1,0 +1,23 @@
+from datetime import datetime
+
+def log(fun):
+    def tmp(*args):
+        f=open('log_file.txt','a')
+        f.write(str(datetime.now()))
+        f.write(fun.func_name)
+        f.write(str(args))
+        f.write('\n')
+        f.close()
+        return fun(*args)
+    return tmp
+
+@log
+def sum(a,b):
+    return a+b
+
+def main():
+    print str(sum(1,2))
+
+if __name__=='__main__':
+    main()
+    
