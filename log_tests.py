@@ -8,8 +8,6 @@ class tests(unittest.TestCase):
         self.b=1
         func(self.a,self.b)
     def test_read(self):
-        if open('log_file.txt','r'):
-            return True
         self.assertTrue(open('log_file.txt','r'))
     def test_time(self):
         f=open('log_file.txt','r')
